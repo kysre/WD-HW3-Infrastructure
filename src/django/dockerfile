@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.8
+FROM python:3.8-alpine
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -9,7 +9,7 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /app
 
 # Install Django directly
-RUN pip install Django==4.2.8
+RUN pip install Django==3.2.20
 
 # Copy the current directory contents into the container at /app
 COPY . .

@@ -1,5 +1,5 @@
 # Use a minimal base image with golang 1.17 installed
-FROM golang:1.17
+FROM golang:1.17-alpine
 
 # Set the working directory inside the container
 # This is where the application files will be copied and executed

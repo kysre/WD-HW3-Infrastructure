@@ -3,8 +3,9 @@ version: "3.9"
 services:
   client:
     build: ./nginx
+    restart: unless-stopped
     ports:
-      - 8000:80
+      - "8000:80"
     depends_on:
       - django_server
       - go_server
@@ -12,7 +13,25 @@ services:
   django_server:
     build: ./django
     # TODO PART 1
+    restart: unless-stopped
+    deploy:
+      mode: replicated
+      replicas: ${DJANGO_REPLICAS}
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 100M
+
+
 
   go_server:
     build: ./go
     # TODO PART 2
+    restart: unless-stopped
+    deploy:
+      mode: replicated
+      replicas: ${GO_REPLICAS}
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 15M
